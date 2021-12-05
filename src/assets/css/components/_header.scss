@@ -1,0 +1,26 @@
+.header-root {
+    .header-wrapper {
+        .header-container {
+            position: relative;
+            background-color: $primaryColor;
+            background: rgb(0, 95, 255);
+            background: linear-gradient(90deg, rgba(0, 95, 255, 1) 0%, rgba(0, 206, 255, 1) 100%);
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            h1 {
+                text-align: center;
+                color: $white;
+            }
+            .add-icon {
+                position: absolute;
+                cursor: pointer;
+                right: 20px;
+                i {
+                    font-size: 50px;
+                }
+            }
+        }
+    }
+}
