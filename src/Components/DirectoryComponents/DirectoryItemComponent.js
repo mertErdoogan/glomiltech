@@ -1,6 +1,6 @@
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faCalculator, faEdit, faTrash } from '@fortawesome/free-solid-svg-icons';
+import { faEdit, faTrash } from '@fortawesome/free-solid-svg-icons';
 
 export default function DirectoryItemComponent(props) {
     const {cardItem, itemIndex, handleUpdate} = props;
@@ -10,7 +10,9 @@ export default function DirectoryItemComponent(props) {
                 <p>AT</p>
             </div>
             <div className="right-block">
-                <p className="name">{cardItem.name}</p>
+                <p className="name">{cardItem.firstname}</p>
+                <p>{cardItem.surname}</p>
+                <p>{cardItem.email}</p>
                 <p className="number">My Number: {cardItem.number}</p>
             </div>
             <div className="option-block">
