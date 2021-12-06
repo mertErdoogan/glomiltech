@@ -40,33 +40,39 @@ function App() {
 
   const [modalCont, setModalCont] = useState(false);
   const [updateState, setUpdateState] = useState(null);
-
+  const [currentIndex, setCurrentIndex] = useState(null);
   const [personControl, setPersonControl] = useState({
     firstname: null,
     surname: null,
     email: null,
     number: null,
-    index: null
   });
 
   const handleNewPerson = (e) => {
+    setCurrentIndex(null);
     setUpdateState(null);
     setModalCont(!modalCont);
   }
 
   const handleUpdate = (e) => {
     setUpdateState(cardList[e]);
+    setCurrentIndex(e);
     setPersonControl({
-      ...cardList[e],
-      index: e
+      ...cardList[e]
     });
     setModalCont(true);
   }
 
   const handleModalFormSubmit = (e) => {
-    let tempArr = [...cardList];
-    tempArr[personControl.index] = personControl;
-    setCardList([...tempArr]);
+    if (currentIndex != null) {
+      let tempArr = [...cardList];
+      tempArr[currentIndex] = personControl;
+      setCardList([...tempArr]);
+    } else {
+      let tempArr = [...cardList];
+      tempArr = [...tempArr, personControl];
+      setCardList([...tempArr]);
+    }
     setModalCont(false);
   }
 
