@@ -51,6 +51,7 @@ function App() {
   const handleNewPerson = (e) => {
     setCurrentIndex(null);
     setUpdateState(null);
+    setPersonControl(null);
     setModalCont(!modalCont);
   }
 
@@ -82,6 +83,15 @@ function App() {
       ...personControl,
       [evt.target.name]: value
     });
+    console.log(personControl);
+  }
+
+  const handleDelete = (e) => {
+    let tempArr = [...cardList];
+    if(e !== -1) {
+      tempArr.splice(e, 1);
+      setCardList([...tempArr]);
+    }
   }
 
   return (
@@ -96,6 +106,7 @@ function App() {
         setModalCont={setModalCont}
         handleUpdate={handleUpdate}
         handleModalFormSubmit={handleModalFormSubmit}
+        handleDelete={handleDelete}
       />
     </div>
   );
