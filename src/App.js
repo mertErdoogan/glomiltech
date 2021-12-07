@@ -2,12 +2,13 @@ import './App.css';
 import HeaderComponent from './Components/HeaderComponent';
 import './assets/css/main.scss'
 import HomePageContainer from './Containers/HomePageContainer';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 function App() {
-  const [cardList, setCardList] = useState([
+
+  let defaultValue = [
     {
-      firstname: 'Mert ',
+      firstname: 'Mert',
       surname: 'Erdogan',
       email: '111111@lapsmdf.com',
       number: '05349734315'
@@ -36,7 +37,17 @@ function App() {
       email: '55555@lapsmdf.com',
       number: '44443332211'
     },
-  ]);
+  ];
+
+  const [cardList, setCardList] = useState(() => {
+    const localValues = window.localStorage.getItem('cardList');
+    return localValues !== null ? JSON.parse(localValues) : defaultValue
+  });
+
+  useEffect(() => {
+    window.localStorage.setItem('cardList', JSON.stringify(cardList));
+  }, ['cardList', cardList]);
+
 
   const [modalCont, setModalCont] = useState(false);
   const [updateState, setUpdateState] = useState(null);
@@ -85,7 +96,6 @@ function App() {
       ...personControl,
       [evt.target.name]: value
     });
-    console.log(personControl);
   }
 
   const handleDelete = (e) => {
@@ -106,7 +116,6 @@ function App() {
       )
     });
     setFilterValues([...result]);
-    console.log( );
     if(result.length > 0 && e.value.length > 0) {
       setDropdownControl(true);
     } else {
