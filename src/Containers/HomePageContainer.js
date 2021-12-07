@@ -4,12 +4,23 @@ import DirectoryComponent from '../Components/DirectoryComponents/DirectoryCompo
 import SearchComponent from '../Components/SearchComponent'
 
 export default function HomePageContainer(props) {
-    const { cardList, modalCont, setModalCont, handleUpdate, updateState, handleModalFormSubmit, handleModalInput, handleDelete } = props;
+    const { 
+        cardList, 
+        modalCont, 
+        setModalCont, 
+        handleUpdate, 
+        updateState, 
+        handleModalFormSubmit, 
+        handleModalInput, 
+        handleDelete, 
+        handleFilter, 
+        dropdownControl, 
+        filterValues } = props;
     return (
         <div className="home-root">
             <div className="home-wrapper">
                 <div className="home-container">
-                    <SearchComponent />
+                    <SearchComponent filterValues={filterValues} dropdownControl={dropdownControl} handleFilter={handleFilter} />
                     <DirectoryComponent handleDelete={handleDelete} handleUpdate={handleUpdate} cardList={cardList} />
                     {
                         modalCont && <CustomModalComponent
