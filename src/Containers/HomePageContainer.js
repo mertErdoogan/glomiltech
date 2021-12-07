@@ -15,7 +15,8 @@ export default function HomePageContainer(props) {
         handleDelete, 
         handleFilter, 
         dropdownControl, 
-        filterValues } = props;
+        filterValues,
+        emailValid } = props;
     return (
         <div className="home-root">
             <div className="home-wrapper">
@@ -29,6 +30,7 @@ export default function HomePageContainer(props) {
                             updateState={updateState}
                             modalCont={modalCont}
                             setModalCont={setModalCont}
+                            emailValid={emailValid}
                         />
                     }
                 </div>

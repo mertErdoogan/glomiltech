@@ -14,21 +14,13 @@ export default function SearchComponent(props) {
                                     {
                                         filterValues && filterValues.map((item, index) => <div key={index} className="directory-item">
                                             <div className="left-block">
-                                                <p>AT</p>
+                                                <p>{item.firstname && item.firstname.charAt(0).toUpperCase()}{item.surname && item.surname.charAt(0).toUpperCase()}</p>
                                             </div>
                                             <div className="right-block">
                                                 <p className="name">Name: {item.firstname}</p>
                                                 <p>Surname: {item.surname}</p>
                                                 <p>E-Mail: {item.email}</p>
                                                 <p className="number">Number: {item.number}</p>
-                                            </div>
-                                            <div className="option-block">
-                                                <div className="option-item">
-                                                    <p>2</p>
-                                                </div>
-                                                <div className="option-item">
-                                                    <p>2</p>
-                                                </div>
                                             </div>
                                         </div>)
                                     }

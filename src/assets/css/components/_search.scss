@@ -41,3 +41,14 @@
         }
     }
 }
+
+
+.sub-btn {
+    opacity: 0.5;
+    pointer-events: none;
+
+    &.active {
+        opacity: 1;
+        pointer-events: unset;
+    }
+}

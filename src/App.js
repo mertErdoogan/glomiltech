@@ -60,6 +60,7 @@ function App() {
   });
   const [filterValues, setFilterValues] = useState([]);
   const [dropdownControl, setDropdownControl] = useState(false);
+  const [emailValid, setEmailValid] = useState(true);
 
   const handleNewPerson = (e) => {
     setCurrentIndex(null);
@@ -75,6 +76,7 @@ function App() {
       ...cardList[e]
     });
     setModalCont(true);
+    setEmailValid(false);
   }
 
   const handleModalFormSubmit = (e) => {
@@ -88,14 +90,29 @@ function App() {
       setCardList([...tempArr]);
     }
     setModalCont(false);
+    setEmailValid(true);
   }
 
   const handleModalInput = (evt) => {
     const value = evt.target.value;
-    setPersonControl({
-      ...personControl,
-      [evt.target.name]: value
-    });
+    let mailReg;
+    if (evt.target.name === 'email') {
+      mailReg = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(evt.target.value);
+    }
+    if (mailReg === true ) {
+      setPersonControl({
+        ...personControl,
+        [evt.target.name]: value
+      });
+      setEmailValid(false);
+    } else if(evt.target.name !== undefined) {
+      setPersonControl({
+        ...personControl,
+        [evt.target.name]: value
+      });
+    } else {
+      setEmailValid(true);
+    }
   }
 
   const handleDelete = (e) => {
@@ -116,7 +133,7 @@ function App() {
       )
     });
     setFilterValues([...result]);
-    if(result.length > 0 && e.value.length > 0) {
+    if (result.length > 0 && e.value.length > 0) {
       setDropdownControl(true);
     } else {
       setDropdownControl(false);
@@ -139,6 +156,7 @@ function App() {
         handleFilter={handleFilter}
         dropdownControl={dropdownControl}
         filterValues={filterValues}
+        emailValid={emailValid}
       />
     </div>
   );
