@@ -109,10 +109,10 @@ function App() {
   const handleFilter = (e) => {
     const result = cardList.filter((item, index) => {
       return (
-        item.firstname.toLowerCase().indexOf(e.value.toLowerCase()) >= 0 ||
-        item.surname.toLowerCase().indexOf(e.value.toLowerCase()) >= 0 ||
-        item.email.toLowerCase().indexOf(e.value.toLowerCase()) >= 0 ||
-        item.number.toLowerCase().indexOf(e.value.toLowerCase()) >= 0
+        item.firstname && item.firstname.toLowerCase().indexOf(e.value.toLowerCase()) >= 0 ||
+        item.surname && item.surname.toLowerCase().indexOf(e.value.toLowerCase()) >= 0 ||
+        item.email && item.email.toLowerCase().indexOf(e.value.toLowerCase()) >= 0 ||
+        item.number && item.number.toLowerCase().indexOf(e.value.toLowerCase()) >= 0
       )
     });
     setFilterValues([...result]);
