@@ -7,7 +7,7 @@ export default function DirectoryItemComponent(props) {
     return (
         <div className="directory-item">
             <div className="left-block">
-                <p>AT</p>
+                <p>{ cardItem.firstname && cardItem.firstname.charAt(0).toUpperCase() }{ cardItem.surname && cardItem.surname.charAt(0).toUpperCase() }</p>
             </div>
             <div className="right-block">
                 <p className="name">Name: {cardItem.firstname}</p>
