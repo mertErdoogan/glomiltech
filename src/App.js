@@ -13,13 +13,13 @@ function App() {
       number: '05349734315'
     },
     {
-      firstname: 'Mert 2',
+      firstname: 'kemal',
       surname: 'Erdogan',
       email: '22222@lapsmdf.com',
       number: '12344332211'
     },
     {
-      firstname: 'Mert 3',
+      firstname: 'Mert kemal',
       surname: 'Erdogan',
       email: '33333@lapsmdf.com',
       number: '44443332211'
@@ -47,6 +47,8 @@ function App() {
     email: null,
     number: null,
   });
+  const [filterValues, setFilterValues] = useState([]);
+  const [dropdownControl, setDropdownControl] = useState(false);
 
   const handleNewPerson = (e) => {
     setCurrentIndex(null);
@@ -88,9 +90,27 @@ function App() {
 
   const handleDelete = (e) => {
     let tempArr = [...cardList];
-    if(e !== -1) {
+    if (e !== -1) {
       tempArr.splice(e, 1);
       setCardList([...tempArr]);
+    }
+  }
+
+  const handleFilter = (e) => {
+    const result = cardList.filter((item, index) => {
+      return (
+        item.firstname.toLowerCase().indexOf(e.value.toLowerCase()) >= 0 ||
+        item.surname.toLowerCase().indexOf(e.value.toLowerCase()) >= 0 ||
+        item.email.toLowerCase().indexOf(e.value.toLowerCase()) >= 0 ||
+        item.number.toLowerCase().indexOf(e.value.toLowerCase()) >= 0
+      )
+    });
+    setFilterValues([...result]);
+    console.log( );
+    if(result.length > 0 && e.value.length > 0) {
+      setDropdownControl(true);
+    } else {
+      setDropdownControl(false);
     }
   }
 
@@ -107,6 +127,9 @@ function App() {
         handleUpdate={handleUpdate}
         handleModalFormSubmit={handleModalFormSubmit}
         handleDelete={handleDelete}
+        handleFilter={handleFilter}
+        dropdownControl={dropdownControl}
+        filterValues={filterValues}
       />
     </div>
   );
