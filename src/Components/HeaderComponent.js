@@ -6,7 +6,7 @@ export default function HeaderComponent(props) {
         <div className="header-root">
             <div className="header-wrapper">
                 <div className="header-container">
-                    <h1>Contancts</h1>
+                    <h1>Contacts</h1>
                     <div className="add-icon" onClick={() => handleNewPerson(true)}>
                         <i>+</i>
                     </div>
